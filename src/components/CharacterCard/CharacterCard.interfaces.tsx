@@ -1,5 +1,6 @@
+import { Character } from "@/store/RickAndMorty/types/Character.interface";
+
 export interface CharacterCardProps {
-  name: string;
-  image: string;
-  extraData: {species: string,gender:string};
+  character: Character
+  changeCurrentCharacter(character: Character): void;
 }

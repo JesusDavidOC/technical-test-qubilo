@@ -9,4 +9,5 @@ export const {
   pushGendersCatalogs,
   pushLocationsCatalogs,
   pushEpisodesCatalogs,
+  saveContent,
 } = RickAndMortyStore.actions;

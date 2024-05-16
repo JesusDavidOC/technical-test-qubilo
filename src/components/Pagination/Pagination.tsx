@@ -17,11 +17,18 @@ export default function Pagination() {
     const newPages: Array<number> = [];
     const pagesSteps = 5;
     if (!metadata) {
-        setAvailablePages([])
+      setAvailablePages([]);
       return;
     }
     if (currentPage !== 1 && currentPage !== metadata.pages) {
       newPages.push(currentPage);
+    }
+    if (metadata.pages < pagesSteps) {
+      for (let index = 1; index <= metadata.pages; index++) {
+        newPages.push(index);
+      }
+      setAvailablePages(newPages);
+      return;
     }
     for (let index = 1; index < pagesSteps; index++) {
       if (currentPage + index < metadata.pages) {

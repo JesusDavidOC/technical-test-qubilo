@@ -7,10 +7,14 @@ import {
   pushLocationsCatalogs,
   pushGendersCatalogs,
   updateFilters,
+  saveContent,
 } from "../RickAndMorty.actions.tsx";
 import { getFiltersQuery } from "../helpers/Request.helpers.tsx";
 import { store } from "@/store/index.tsx";
-import { CharactersMetadata } from "../types/Character.interface.tsx";
+import {
+  Character,
+  CharactersMetadata,
+} from "../types/Character.interface.tsx";
 import { Episode, Location } from "../types/Filters.interface.tsx";
 import { Gender } from "../types/Genders.enum.tsx";
 
@@ -18,6 +22,14 @@ export function getByCurrentState() {
   store.dispatch(setLoading(true));
   const { filters, currentPage } = store.getState().charactersStore;
   const filtersQuery = getFiltersQuery(filters);
+  if (filtersQuery === "") {
+    const characters = getStoredContent(currentPage);
+    if (characters) {
+      store.dispatch(setCharacters(characters));
+      store.dispatch(setLoading(false));
+      return;
+    }
+  }
   fetch(
     `https://rickandmortyapi.com/api/character/?page=${currentPage}${filtersQuery}`,
     { method: "GET" }
@@ -27,8 +39,19 @@ export function getByCurrentState() {
       store.dispatch(setCharacters(data.results));
       store.dispatch(setCharactersMetadata(data.info));
       store.dispatch(setLoading(false));
+      if (filtersQuery === "") {
+        store.dispatch(
+          saveContent({ page: currentPage, characters: data.results })
+        );
+      }
     })
     .catch((error) => console.error(error));
+}
+
+function getStoredContent(page: number): Array<Character> | undefined {
+  const { storedContent } = store.getState().charactersStore;
+  const content = storedContent[page];
+  return content;
 }
 
 export function setCurrentPage(page: number) {

@@ -1,0 +1,43 @@
+$accent-color: rgba(44, 41, 41, 0.884);
+$header-height: 7vh;
+#header {
+  height: $header-height;
+  background-color: rgb(0, 0, 0);
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
+  -webkit-box-shadow: 4px 6px 15px 4px #83f53b;
+  -moz-box-shadow: 4px 6px 15px 4px #83f53b;
+  box-shadow: 4px 6px 15px 4px #83f53b;
+  position: sticky;
+  #filters {
+    display: grid;
+    .buttonHandleFilters {
+      border-radius: 3em;
+      background-color: #83f53b;
+      color: $accent-color;
+      align-self: center;
+      width: fit-content;
+      padding: 0.8em;
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+  #pagePresentation {
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    img {
+      width: 50px;
+      border-radius: 100%;
+    }
+    #pageTitle {
+      color: #83f53b;
+      font-size: 2em;
+      font-weight: bold;
+      margin-left: 1em;
+    }
+  }
+}

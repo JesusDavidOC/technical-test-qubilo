@@ -1,13 +1,14 @@
 $card-width: 18vw;
 $card-height: 27vh;
+$accent-color: rgba(44, 41, 41, 0.884);
 
 @keyframes blurAnimation {
   from {
-    -webkit-filter: blur(2px);
-    -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
-    filter: blur(2px);
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
   }
   to {
     -webkit-filter: blur(0px);
@@ -20,16 +21,14 @@ $card-height: 27vh;
 
 .characterCard {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: grid;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #83f53b;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.4em;
@@ -53,7 +52,7 @@ $card-height: 27vh;
     position: absolute;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 99;
     height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: auto min-content min-content;
@@ -72,10 +71,10 @@ $card-height: 27vh;
     }
   }
   &:hover {
-    -webkit-box-shadow: 4px 6px 15px 4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 4px 6px 15px 4px rgba(0, 0, 0, 0.75);
-    box-shadow: 4px 6px 15px 4px rgba(0, 0, 0, 0.75);
     cursor: pointer;
+    -webkit-box-shadow: 4px 6px 15px 4px #83f53b;
+    -moz-box-shadow: 4px 6px 15px 4px #83f53b;
+    box-shadow: 4px 6px 15px 4px #83f53b;
     .characterCardBackground {
       animation-name: blurAnimation;
       animation-duration: 1s;
@@ -83,6 +82,7 @@ $card-height: 27vh;
     .content {
       > .name,
       > .extraData {
+        color: #83f53b;
         background-color: rgba(70, 70, 70, 0.582);
       }
     }

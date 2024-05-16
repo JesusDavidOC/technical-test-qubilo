@@ -1,0 +1,92 @@
+.sidebarCharacter {
+  position: fixed;
+  right: 0;
+  transform: translateY(-100%);
+  z-index: 9998;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(59, 59, 59, 0.486);
+  .sidebarContent {
+    height: 100%;
+    width: 500px;
+    background-color: rgba(44, 41, 41, 0.961);
+    z-index: 9999;
+    display: grid;
+    grid-template-rows: 30% 10% 27% auto;
+    color: white;
+    .sidebarButton {
+      background-color: #ffffff00;
+      color: white;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      padding: 0.5em;
+      justify-self: end;
+      position: absolute;
+      border-radius:100%;
+    }
+    .sidebarButton:hover {
+      background-color: #555;
+    }
+    .sidebarButton i {
+      font-size: 1.7rem;
+    }
+    .characterImage {
+      display: grid;
+      img {
+        border-radius: 100%;
+        width: 12em;
+        justify-self: center;
+        align-self: flex-end;
+      }
+    }
+    .characterName {
+      display: flex;
+      justify-content: center;
+      span {
+        color: white;
+        font-size: 2em;
+      }
+    }
+    .descriptionItem {
+      margin: 0.5em 1em 0.5em 1em;
+      display: grid;
+      grid-template-columns: auto auto;
+      border-bottom: solid rgba(255, 255, 255, 0.356) 1px;
+      color: #83f53b;
+      .labelDescription {
+        justify-self: start;
+      }
+      .valueDescription {
+        justify-self: end;
+      }
+    }
+    .characterEpisodes {
+      padding: 0 1em 0 1em;
+      overflow: auto;
+      #label {
+        display: flex;
+        position: sticky;
+        top: 0;
+        background-color: rgb(44, 41, 41);
+      }
+      .episode {
+        padding-bottom: 0.8em;
+        border-bottom: solid rgba(255, 255, 255, 0.356) 1px;
+        margin-bottom: 0.5em;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        .episodeName {
+          color: #83f53b;
+        }
+      }
+    }
+  }
+}

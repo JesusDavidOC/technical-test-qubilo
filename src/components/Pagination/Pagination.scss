@@ -9,7 +9,7 @@ $accent-color: rgba(44, 41, 41, 0.884);
     $pagination-button-dimension: 2em;
     padding: 5px;
     color: black;
-    background-color: #ddd;
+    background-color: #ffffff;
     border-radius: 8px;
     border-style: solid;
     border-width: 1px;
@@ -18,9 +18,9 @@ $accent-color: rgba(44, 41, 41, 0.884);
     height: $pagination-button-dimension;
     margin-left: 3px;
     &.activeButton {
-      color: white;
+      color: #83f53b;
       background-color: $accent-color;
-      border-color: black;
+      border-color: #83f53b;
     }
   }
 }

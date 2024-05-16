@@ -2,7 +2,7 @@ import { Filters } from "../types/Filters.interface";
 
 export function getFiltersQuery(filters: Filters) {
   let queryParam = "";
-  if (filters.genders) {
+  if (filters.genders && filters.genders.length>0) {
     queryParam = queryParam + `&gender=`;
     for (let index = 0; index < filters.genders.length; index++) {
       queryParam =
