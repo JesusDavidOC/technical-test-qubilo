@@ -30,7 +30,6 @@ export function getByCurrentState() {
       store.dispatch(setCharacters(characters));
       store.dispatch(setLoading(false));
       const metadata = getCharactersMetadata();
-      console.log(metadata)
       if (metadata) store.dispatch(setCharactersMetadata(metadata));
       return;
     }
