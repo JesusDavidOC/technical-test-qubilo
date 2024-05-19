@@ -7,16 +7,18 @@ import {
   pushLocationsCatalogs,
   pushGendersCatalogs,
   updateFilters,
-  saveContent,
 } from "../RickAndMorty.actions.tsx";
-import { getFiltersQuery } from "../helpers/Request.helpers.tsx";
+import { getFiltersQuery } from "../helpers/Request.helper.tsx";
 import { store } from "@/store/index.tsx";
-import {
-  Character,
-  CharactersMetadata,
-} from "../types/Character.interface.tsx";
+import { CharactersMetadata } from "../types/Character.interface.tsx";
 import { Episode, Location } from "../types/Filters.interface.tsx";
 import { Gender } from "../types/Genders.enum.tsx";
+import {
+  getCharactersMetadata,
+  getStoredContent,
+  saveCharactersMetadata,
+  saveContent,
+} from "../helpers/LocalStorage.helper.tsx";
 
 export function getByCurrentState() {
   store.dispatch(setLoading(true));
@@ -27,6 +29,9 @@ export function getByCurrentState() {
     if (characters) {
       store.dispatch(setCharacters(characters));
       store.dispatch(setLoading(false));
+      const metadata = getCharactersMetadata();
+      console.log(metadata)
+      if (metadata) store.dispatch(setCharactersMetadata(metadata));
       return;
     }
   }
@@ -40,18 +45,11 @@ export function getByCurrentState() {
       store.dispatch(setCharactersMetadata(data.info));
       store.dispatch(setLoading(false));
       if (filtersQuery === "") {
-        store.dispatch(
-          saveContent({ page: currentPage, characters: data.results })
-        );
+        saveContent(currentPage, data.results);
+        saveCharactersMetadata(data.info);
       }
     })
     .catch((error) => console.error(error));
-}
-
-function getStoredContent(page: number): Array<Character> | undefined {
-  const { storedContent } = store.getState().charactersStore;
-  const content = storedContent[page];
-  return content;
 }
 
 export function setCurrentPage(page: number) {
@@ -79,8 +77,12 @@ export function loadCatalogs() {
           })
           .catch((error) => console.error(error));
       }
+      store.dispatch(setLoading(false));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => {
+      store.dispatch(setLoading(false));
+    });
 
   fetch(`https://rickandmortyapi.com/api/episode`, { method: "GET" })
     .then((response) => response.json())
@@ -103,7 +105,10 @@ export function loadCatalogs() {
           .catch((error) => console.error(error));
       }
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => {
+      store.dispatch(setLoading(false));
+    });
 
   const genderOptions: Gender[] = Object.keys(Gender) as Gender[];
 

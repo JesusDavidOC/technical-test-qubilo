@@ -53,7 +53,7 @@ export default function Pagination() {
     }
 
     setAvailablePages(newPages);
-  }, [currentPage, metadata]);
+  }, [metadata, currentPage]);
   return (
     <div>
       {currentPage > 1 ? (

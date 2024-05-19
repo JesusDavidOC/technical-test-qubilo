@@ -16,7 +16,6 @@ export interface RickAndMortyState {
     locations: Array<Location>;
     episodes: Array<Episode>;
   };
-  storedContent: { [key: number]: Character[] };
 }
 
 const initialState: RickAndMortyState = {
@@ -33,7 +32,6 @@ const initialState: RickAndMortyState = {
     locations: [],
     episodes: [],
   },
-  storedContent: {},
 };
 
 export const RickAndMortyStore = createSlice({
@@ -84,12 +82,6 @@ export const RickAndMortyStore = createSlice({
     },
     updateFilters: (state, filters: PayloadAction<Filters>) => {
       state.filters = { ...state.filters, ...filters.payload };
-    },
-    saveContent(
-      state,
-      content: PayloadAction<{ page: number; characters: Character[] }>
-    ) {
-      state.storedContent[content.payload.page] = content.payload.characters;
     },
   },
 });
